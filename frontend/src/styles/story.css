@@ -1,0 +1,208 @@
+/**
+ * story.css — Scoped styling for ResumeIQ Minimalist 3D Storytelling Landing Page
+ * Palette: Warm off-white (#F3F1EC), Charcoal (#242523), Sage (#DDE1D4), Stone (#D4D2CA)
+ */
+
+.story-wrapper {
+  --story-bg-1: #F3F1EC;
+  --story-bg-2: #EEF0E8;
+  --story-bg-3: #F1EEE9;
+  --story-bg-4: #EBEEE9;
+  --story-bg-5: #F2F1EB;
+
+  --story-paper: #FFFEF9;
+  --story-backing: #E5E2D9;
+  --story-text-primary: #242523;
+  --story-text-secondary: #696A65;
+  --story-text-accent: #8E9185;
+  --story-surface-sage: #DDE1D4;
+  --story-surface-sage-light: #F0F3EC;
+  --story-border-stone: #D4D2CA;
+  --story-border-subtle: rgba(212, 210, 202, 0.65);
+  --story-btn-primary: #292C27;
+  --story-btn-text: #FFFEF9;
+
+  background-color: var(--story-bg-1);
+  color: var(--story-text-primary);
+  font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  min-height: 100vh;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-x: clip;
+  position: relative;
+}
+
+/* Chapter Background Variants */
+.story-wrapper[data-chapter="0"] { background-color: var(--story-bg-1); }
+.story-wrapper[data-chapter="1"] { background-color: var(--story-bg-2); }
+.story-wrapper[data-chapter="2"] { background-color: var(--story-bg-3); }
+.story-wrapper[data-chapter="3"] { background-color: var(--story-bg-4); }
+.story-wrapper[data-chapter="4"] { background-color: var(--story-bg-5); }
+
+/* Typography */
+.story-chapter-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--story-text-accent);
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.story-chapter-title {
+  font-size: clamp(34px, 4.5vw, 54px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--story-text-primary);
+  margin: 0 0 24px;
+  white-space: pre-line;
+}
+
+.story-chapter-desc {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--story-text-secondary);
+  margin: 0 0 32px;
+  max-width: 480px;
+}
+
+/* 3D Scene Viewport */
+.scene-viewport {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  width: 100%;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+
+.sculpture-rig {
+  position: relative;
+  width: 340px;
+  height: 460px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Paper Sheets */
+.sculpture-backing {
+  position: absolute;
+  inset: 0;
+  background: var(--story-backing);
+  border-radius: 8px;
+  border: 1px solid var(--story-border-stone);
+  transform: translateZ(-16px) rotate(-1.5deg);
+  box-shadow: 0 16px 36px -12px rgba(36, 37, 35, 0.08);
+}
+
+.sculpture-main-sheet {
+  position: absolute;
+  inset: 0;
+  background: var(--story-paper);
+  border-radius: 8px;
+  border: 1px solid var(--story-border-stone);
+  box-shadow: 0 20px 48px -16px rgba(36, 37, 35, 0.12);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform-style: preserve-3d;
+}
+
+/* Document Panels */
+.resume-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--story-border-subtle);
+  border-radius: 6px;
+  padding: 12px 14px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+/* Scanning Beam (Chapter 2) */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8E9185, #DDE1D4, #8E9185, transparent);
+  box-shadow: 0 0 8px rgba(142, 145, 133, 0.4);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Floating Status Pills */
+.scene-pill {
+  position: absolute;
+  background: var(--story-surface-sage);
+  border: 1px solid var(--story-border-stone);
+  color: var(--story-text-primary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  box-shadow: 0 8px 18px -4px rgba(36, 37, 35, 0.1);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 30;
+  transition: all 0.5s ease;
+}
+
+/* Sculptural Orbital Ring */
+.orbital-ring {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  border: 1px dashed var(--story-border-stone);
+  opacity: 0.55;
+  pointer-events: none;
+  transform: translateZ(-25px) rotateX(72deg) rotateZ(20deg);
+}
+
+/* Sculptural Minimalist Cube */
+.decorative-cube {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--story-surface-sage);
+  border: 1px solid var(--story-border-stone);
+  border-radius: 4px;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 10px rgba(36, 37, 35, 0.06);
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .sculpture-rig {
+    transition: none !important;
+    transform: none !important;
+  }
+  .resume-panel {
+    transition: none !important;
+    transform: none !important;
+  }
+  .scan-line {
+    display: none !important;
+  }
+}
+
+.reduced-motion .sculpture-rig {
+  transition: none !important;
+  transform: none !important;
+}
+
+.reduced-motion .resume-panel {
+  transition: none !important;
+  transform: none !important;
+}
+
+.reduced-motion .scan-line {
+  display: none !important;
+}
