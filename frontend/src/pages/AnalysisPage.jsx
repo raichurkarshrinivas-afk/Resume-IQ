@@ -37,6 +37,7 @@ import Badge from '../components/ui/Badge';
 import ScoreGauge from '../components/ui/ScoreGauge';
 import Input from '../components/ui/Input';
 import { SkeletonGauge, SkeletonCard } from '../components/ui/Skeleton';
+import SkillLearningResources, { SkillRecommendations } from '../components/SkillLearningResources';
 
 const TABS = [
   { key: 'analysis', label: 'Analysis', icon: '📊' },
@@ -927,6 +928,27 @@ export default function AnalysisPage() {
               </div>
             </Card>
           </div>
+
+          {/* Smart Skill Recommendations Feature */}
+          <Card id="smart-skill-recommendations">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
+              <div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 4px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>🎯</span> Smart Skill Recommendations
+                </h3>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: 0 }}>
+                  Curated tutorials and official documentation for skills missing from your resume.
+                </p>
+              </div>
+              {sortedMissingKeywords.length > 0 && (
+                <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-primary-700)', background: 'var(--color-primary-50)', border: '1px solid var(--color-primary-200)', padding: '3px 10px', borderRadius: 'var(--radius-full)' }}>
+                  {sortedMissingKeywords.length} {sortedMissingKeywords.length === 1 ? 'Skill to Bridge' : 'Skills to Bridge'}
+                </span>
+              )}
+            </div>
+
+            <SkillRecommendations missingSkills={sortedMissingKeywords} />
+          </Card>
 
           {/* Expandable Top 5 Fixes List with Priority Badges */}
           <Card>
